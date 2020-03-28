@@ -1,4 +1,4 @@
-FROM node:10-slim
+FROM node:12-slim
 
 # Add Respository chrome
 RUN echo "Add Respository chrome." \
