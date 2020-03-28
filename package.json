@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@google-cloud/datastore": "^2.0.0",
+    "@types/sharp": "^0.24.0",
     "@webcomponents/webcomponentsjs": "^2.4.0",
     "chrome-launcher": "^0.13.0",
     "chrome-remote-interface": "^0.28.0",
@@ -38,7 +39,8 @@
     "performance-now": "^2.1.0",
     "progress-bar-element": "^2.0.0",
     "puppeteer": "^2.0.0",
-    "semver": "^7.1.0"
+    "semver": "^7.1.0",
+    "sharp": "^0.25.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",

@@ -7,6 +7,7 @@ import * as koaLogger from 'koa-logger';
 import * as path from 'path';
 import * as puppeteer from 'puppeteer';
 import * as url from 'url';
+import * as sharp from 'sharp';
 
 import { Renderer, ScreenshotError } from './renderer';
 import { Config, ConfigManager } from './config';
@@ -148,7 +149,16 @@ export class Rendertron {
 
       ctx.set('Content-Type', 'image/jpeg');
       ctx.set('Content-Length', img.length.toString());
-      ctx.body = img;
+
+      // IMOLKO -- CODE -- SUPPORT thumbWidth
+      const thumbWidth = Number(ctx.query['thumbWidth']) || 0;
+      if (thumbWidth > 0 && thumbWidth < dimensions.width) {
+        ctx.body = await sharp(img)
+          .resize({ width: thumbWidth })
+          .toBuffer()
+      } else {
+        ctx.body = img;
+      }
     } catch (error) {
       const err = error as ScreenshotError;
       ctx.status = err.type === 'Forbidden' ? 403 : 500;
